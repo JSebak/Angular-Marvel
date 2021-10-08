@@ -1,0 +1,69 @@
+<header>
+  <navbar ngModel="search"
+  (toSearch)="filter($event)"
+  ></navbar>
+</header>
+<div class="row">
+  <div class="col-md-9" style="background-color: whitesmoke;">
+    <div class="container">
+      <header>
+        <div class="dark-text" style="font-size: 1cm;">
+          <img src="./assets/characters.png">
+          <strong>Characters</strong>
+
+          <div class="dropdown" mdbDropdown>
+            <button mdbDropdownToggle type="button" mdbBtn  class="dropdown-toggle waves-light" style="background-color: seashell;color: black;"
+              mdbWavesEffect>
+              Sort by:
+            </button>
+
+            <div class="dropdown-menu">
+              <a class="dropdown-item" (click)="sort('Name Ascending')">Name Ascending</a>
+              <a class="dropdown-item" (click)="sort('Date Ascending')">Creation Date Ascending</a>
+              <a class="dropdown-item" (click)="sort('Name Descending')">Name Descending</a>
+              <a class="dropdown-item" (click)="sort('Date Descending')">Creation Date Descending</a>
+            </div>
+          </div>
+        </div>
+
+
+      </header>
+
+      <div class="row">
+        <div class="col-md-6" *ngFor="let item of characters  | paginate : config; index as i" [attr.data-index]="i">
+          <characterCard #card [character]="item"
+          [(comicId)]="comicToOpen"
+          [index]="i">
+          </characterCard>
+        </div>
+      </div>
+      <div class="col" style="position: relative; right: -30%; margin-top: 0.5cm;">
+        <pagination-controls
+
+          previousLabel="Prev"
+          nextLabel="Next"
+          [responsive]="true"
+          (pageChange)="handlePageChange($event)"
+        >
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3" style="background-color: rgb(194, 192, 192);">
+    <favoriteList #favList
+    (comicToOpen)="openComic($event)"></favoriteList>
+  </div>
+</div>
+<spinner [active]="spinner"></spinner>
+
+
+
+
+
+
+
+
+
+
+

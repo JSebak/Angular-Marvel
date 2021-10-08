@@ -1,0 +1,179 @@
+    <!--Card-->
+    <mdb-card class="characterCard" style="max-height: 600px; min-height: 400px;">
+
+      <!--Card image-->
+      <div class="row">
+        <div class ="col-md-6 ">
+          <div class="view overlay waves-light  " mdbWavesEffect>
+          <img
+            [src]="thumbnail"
+            class="rounded-circle characterImage" alt="text"
+            data-holder-rendered="true"
+            routerLink=""
+            (onclick)="showText()"
+          >
+          </div>
+        </div>
+
+
+       <!--/.Card image-->
+
+        <!--Card content-->
+        <div class="col-md-6" style="min-height: 250px;">
+          <mdb-card-body class="dark-text">
+            <a class="activator px-3 mr-2">
+            </a>
+
+            <!--Title-->
+            <mdb-card-title>
+              <h4 class="dark-text characterTitle">{{title}}</h4>
+            </mdb-card-title>
+
+            <hr class="hr-light">
+
+            <!--Text-->
+
+            <mdb-card-text class="dark-text">
+                {{description | slice:0:100}} <span *ngIf="description?.length>100">...</span>
+
+            </mdb-card-text>
+            <button type="button" mdbBtn  style="position: relative;" class="modalButton waves-light" data-toggle="modal" data-target="#basicExample"
+                mdbWavesEffect
+                (click)="showText()">
+                {{'See More'}}
+              </button>
+
+
+
+          </mdb-card-body>
+        </div>
+
+
+      </div>
+
+        <div class="grid">
+          <ng-container *ngFor="let item of comics">
+            <div class="comicLink dark-text" >
+              <button class="no-link"  (click)="getComic(item)">{{item.name}}</button>
+            </div>
+          </ng-container>
+        </div>
+      <!--/.Card content-->
+    </mdb-card>
+    <!--/.Card-->
+
+
+    <div mdbModal #comicModal="mdbModal" class="modal fade comic-mod" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content" style="max-width:750px;">
+
+                  <button type="button" class="close" data-dismiss="modal" style="position: relative; left: 45%;outline: none;border: none; " aria-label="Close" (click)="closeModal()">
+                    <img src="./assets/btn-close.png" style="max-width: 0.7cm;">
+                  </button>
+              <div class="modal-body">
+
+                <div class="row">
+                  <div class="col-5">
+                    <img [src]="comicThumbnail"
+                    data-holder-rendered="true"
+                    routerLink=""
+                    style="  height: auto;
+                     width: 90%;
+                     position: relative;
+                     "
+                      alt="">
+                  </div>
+
+                  <div class="col-7" style=" max-height: 400px;overflow-y: auto;">
+                    <p class="Title" style="font-size: 0.5cm; max-width: 350px;">
+                      <strong>{{theComic.title}}</strong>
+                    </p>
+                    <p>
+                      {{isReadMore ? theComic.description : theComic.description | slice:0:100}} <span *ngIf="!isReadMore&& theComic.description?.length>100">...</span>
+                    </p>
+                    <div *ngIf="theComic.description?.length>100">
+                      <button type="button" mdbBtn class="modalButton waves-light " mdbWavesEffect (click)="readMore()">
+                        {{isReadMore ? 'Read less':'Read More'}}
+                      </button>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="width: inherit;">
+                <div class="btn-group" role="group" aria-label="Basic example" style="width: inherit;left: 15px;">
+                  <button *ngIf="!favorite" mdbBtn type="button" class="waves-light" style="background-color: #dcdcdc; color: rgba(255, 0, 0, 0.705);font-weight: bold;" mdbWavesEffect (click)="addFavorite(theComic.id)">
+                    <img src="./assets/btn-favourites-default.png" style="max-width: 0.7cm;">
+                    Add to favorites
+                  </button>
+                  <button *ngIf="favorite" mdbBtn type="button" class="waves-light" style="background-color: black; color: rgba(255, 0, 0, 0.705);font-weight: bold;" mdbWavesEffect (click)="removeFavorite(theComic.id)">
+                    <img src="./assets/btn-favourites-primary.png" style="max-width: 0.7cm;">
+                    Added to favorites
+                  </button>
+                  <button mdbBtn type="button" class="waves-light" style="background-color: #dcdcdc;color: rgba(255, 0, 0, 0.705);font-weight: bold;" mdbWavesEffect>
+                   <img src="./assets/shopping-cart-primary.png" style="max-width: 0.7cm;">
+                    Buy for: <strong style="font-weight: bolder;">{{theComic.prices[0]?.price}}</strong>
+                  </button>
+
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div mdbModal #characterModal="mdbModal" class="modal fade comic-mod" id="charModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" >
+        <div class="modal-content" style="width: 813px; position: absolute;left: -40%;top: 50%;">
+
+                <button type="button" class="close" data-dismiss="modal" style="position: relative; left: 45%; outline: none;" aria-label="Close" (click)="closeModal()">
+                  <img src="./assets/btn-close.png" style="max-width: 0.7cm;">
+                </button>
+            <div class="modal-body">
+
+              <div class="row">
+                <div class="col" style="max-width: 400px;">
+                  <img [src]="thumbnail"
+                  data-holder-rendered="true"
+                  routerLink=""
+                  style="  height: auto;
+                   max-width: 300px;
+                   position: relative;
+                   "
+                    alt="">
+                </div>
+
+                <div class="col-6" style="overflow-y: auto; max-height: 400px;">
+                  <p class="Title">
+                    <strong>{{title}}</strong>
+                  </p>
+                  <p>
+                    {{isReadMore ? description : description | slice:0:100}} <span *ngIf="!isReadMore && description?.length>100">...</span>
+                  </p>
+                  <div *ngIf="description?.length>100">
+                    <button type="button" mdbBtn class="modalButton waves-light" mdbWavesEffect (click)="readMore()">
+                      {{isReadMore ? 'Read less':'Read More'}}
+                    </button>
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="btn-group " role="group" aria-label="Basic example" style="width: 813px;left: 15px;">
+                <button mdbBtn type="button" class="modalButton waves-light" mdbWavesEffect (click)="search()">
+                Read more here!
+                </button>
+                <button mdbBtn type="button"  class="modalButton waves-light" mdbWavesEffect (click)="closeModal()">
+                 Close
+                </button>
+
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<spinner [active]="spinner"></spinner>
+

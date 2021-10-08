@@ -1,0 +1,56 @@
+.characterCard{
+  margin-top: 0.4cm;
+  margin-bottom: 0.1cm;
+}
+
+.comicLink{
+  font-size: 4mm;
+  text-align: left;
+  -webkit-line-clamp: 2;
+}
+
+.comicList{
+  text-size-adjust: inherit;
+  text-overflow: clip;
+}
+
+.characterImage{
+
+  height: 4cm;
+  width: 4cm;
+  position: relative;
+
+  left: -0.5 cm;
+  top: -0.5 cm;
+}
+
+.characterTitle{
+  position: relative;
+  margin-right: 5px;
+
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Create 2 columns and auto-place rows */
+}
+
+.no-link{
+  background:none;
+  border:none;
+  outline: none;
+  margin: 1mm;
+  margin-bottom: 0.2cm;
+}
+
+.Title{
+  font-size: 1cm;
+  font-weight: bold;
+}
+
+.modalButton{
+  background-color: #ff3547;
+  color: whitesmoke;
+  font-weight: 600;
+  cursor: pointer;
+}

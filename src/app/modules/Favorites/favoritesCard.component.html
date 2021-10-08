@@ -1,0 +1,24 @@
+<div style="margin-top: 0.2cm; margin-bottom: 1cm;">
+
+      <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light" style="margin-left: 3mm;">
+        <button type="button" class="close" data-dismiss="modal"
+          style="position: absolute; left: 87%;border:none;outline: none; " aria-label="Close" (click)="removeFavorite()">
+          <img src="./assets/btn-delete.png" style="max-width: 0.9cm;">
+        </button>
+        <img
+          [src]="thumbnail"
+          class="comicImag img-fluid "
+          href="#"
+        />
+        <a href="#!">
+          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+        </a>
+      </div>
+
+      <div style="font-size: 0.7cm;" >
+      <h5 class="dark-text thick" style="text-align: justify;font-weight: 500;" (click)="openComic()">
+        <strong style="cursor: pointer;">{{this.comic.title}}</strong>
+        </h5>
+      </div>
+
+</div>

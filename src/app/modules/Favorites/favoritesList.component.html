@@ -1,0 +1,15 @@
+<header>
+  <div class="dark-text" style="font-size: 1cm;">
+    <img src="./assets/favourites.png" style="top: -3px;position: relative;margin-right: 6px;">
+    <strong>My favorites</strong>
+  </div>
+</header>
+<div class="col" style="width: 100%;max-height: 1800px;overflow-y: auto;overflow-x: hidden;">
+  <div *ngFor="let comicId of list">
+    <favoritesCard
+    [id]='comicId'
+    (comicOpen)="openComic($event)"
+    (idToDelete)="removeFavorite($event)">
+    </favoritesCard>
+  </div>
+</div>

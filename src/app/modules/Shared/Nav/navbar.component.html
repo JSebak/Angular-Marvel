@@ -1,0 +1,10 @@
+<mdb-navbar SideClass="navbar navbar-dark black justify-content-between navbar navbar-expand-lg fixed-top">
+  <mdb-navbar-brand>
+      <img src="https://logodownload.org/wp-content/uploads/2017/05/marvel-logo-4.png" style="height: 45px;width: auto;">
+  </mdb-navbar-brand>
+  <form class="form-inline waves-light" mdbWavesEffect>
+    <div class="mySearchBox" >
+      <input mdbInput type="text" name="text"  (blur)="onKey($event)" (keyup.enter)="onKey($event)" id="form1" class="form-control" placeholder="Press Enter to search character " style="width: 10cm;">
+    </div>
+</form>
+</mdb-navbar>

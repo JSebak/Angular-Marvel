@@ -1,0 +1,41 @@
+@keyframes bouncing {
+  0% {
+    top: 40%;
+  }
+  100% {
+    top: 30%;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.page-overlay-wrapper {
+  position: fixed;
+  width: 10000px;
+  height: 10000px;
+  left: -30%;
+  top: 0;
+  z-index: 1009;
+  background: rgba(0, 0, 0, 0.5);
+}
+.bee-spinner {
+  width: 20%;
+  height: 70%;
+  position: fixed;
+  top: 40%;
+  left: calc(50% - 5%);
+  z-index: 100;
+  background-image: url(src\assets\spinner.png);
+  background-repeat: no-repeat;
+  background-size: 30%;
+  animation: bouncing 0.4s cubic-bezier(0.1, 0.25, 0.1, 1) 0s infinite alternate
+    both;
+}
